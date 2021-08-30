@@ -5,8 +5,11 @@ this_dir=$(dirname BASH_SOURCE[0])
 config_file=".conf"
 
 # Input parameters
-if [[ ( $# -ne 3 ) ]]; then
+if [[ ( $# -ne 4 ) ]]; then
     if [ ! -f "$config_file" ]; then
+        echo "There are not Git username."
+        echo "Input Git username (Required)"
+        read gitusername
         echo "There are not group."
         echo "Input group (Type Enter for empty)"
         read group
@@ -16,15 +19,16 @@ if [[ ( $# -ne 3 ) ]]; then
         echo "There are not secret_access_key."
         echo "Input secret_access_key (Type Enter for empty)"
         read secret_access_key
-        if [[ $group != "" && $access_key_id != "" && $secret_access_key != "" ]]; then
-            bash store-parameters.sh $group $access_key_id $secret_access_key
+        if [[ $gitusername != "" && $group != "" && $access_key_id != "" && $secret_access_key != "" ]]; then
+            bash store-parameters.sh $gitusername $group $access_key_id $secret_access_key
         fi
     fi
 else
-    group=$1
-    access_key_id=$2
-    secret_access_key=$3
-    bash store-parameters.sh $group $access_key_id $secret_access_key
+    gitusername=$1
+    group=$2
+    access_key_id=$3
+    secret_access_key=$4
+    bash store-parameters.sh $gitusername $group $access_key_id $secret_access_key
 fi
 
 if [[ -f $config_file ]]; then
@@ -33,7 +37,7 @@ fi
 
 username=${SUDO_USER:-$USER}
 
-if [[ $username != "" ]]; then
+if [[ $gitusername != "" && $username != "" ]]; then
     export HOME_FOLDER="/home/$username"
     export FCH_CHILE_SDK_FOLDER="$HOME_FOLDER/fch-chile-sdk"
     mkdir -p $FCH_CHILE_SDK_FOLDER
@@ -72,7 +76,7 @@ if [[ $username != "" ]]; then
     fi
 
     # Configurations for User
-    bash $common_config/configure-user.sh $group $access_key_id $secret_access_key
+    bash $common_config/configure-user.sh $gitusername $group $access_key_id $secret_access_key
 
     # Install Jupyter extension (Optional)
     bash $common_config/install-jupyter-extension.sh
