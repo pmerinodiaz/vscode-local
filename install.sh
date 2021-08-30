@@ -53,7 +53,7 @@ if [[ $gitusername != "" && $username != "" ]]; then
     else
         cd $common_config
         git fetch
-        git checkout dev
+        git checkout main
         git pull
     fi
 
