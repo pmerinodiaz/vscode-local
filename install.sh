@@ -7,8 +7,8 @@ config_file=".conf"
 # Input parameters
 if [[ ( $# -ne 4 ) ]]; then
     if [ ! -f "$config_file" ]; then
-        echo "There are not Git username."
-        echo "Input Git username (Required)"
+        echo "There are not Gitlab username."
+        echo "Input Gitlab username (Required. For example: dhidalgo.hd fundacionchile ohernandezm patricio.merino)"
         read gitusername
         echo "There are not group."
         echo "Input group (Type Enter for empty)"
