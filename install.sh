@@ -5,7 +5,7 @@ this_dir=$(dirname BASH_SOURCE[0])
 config_file=".conf"
 
 # Input parameters
-if [[ ( $# -ne 4 ) ]]; then
+if [[ ( $# -ne 2 ) ]]; then
     if [ ! -f "$config_file" ]; then
         echo "There are not Gitlab username."
         echo "Input Gitlab username (Required. For example: dhidalgo.hd fundacionchile ohernandezm patricio.merino)"
@@ -13,22 +13,14 @@ if [[ ( $# -ne 4 ) ]]; then
         echo "There are not group."
         echo "Input group (For example: trq-fundacion. Type Enter for empty)"
         read group
-        echo "There are not access_key_id."
-        echo "Input access_key_id (Type Enter for empty)"
-        read access_key_id
-        echo "There are not secret_access_key."
-        echo "Input secret_access_key (Type Enter for empty)"
-        read secret_access_key
-        if [[ $gitusername != "" && $group != "" && $access_key_id != "" && $secret_access_key != "" ]]; then
-            bash store-parameters.sh $gitusername $group $access_key_id $secret_access_key
+        if [[ $gitusername != "" && $group != "" ]]; then
+            bash store-parameters.sh $gitusername $group
         fi
     fi
 else
     gitusername=$1
     group=$2
-    access_key_id=$3
-    secret_access_key=$4
-    bash store-parameters.sh $gitusername $group $access_key_id $secret_access_key
+    bash store-parameters.sh $gitusername $group
 fi
 
 if [[ -f $config_file ]]; then
@@ -76,7 +68,7 @@ if [[ $gitusername != "" && $username != "" ]]; then
     fi
 
     # Configurations for User
-    bash $common_config/configure-user.sh $gitusername $group $access_key_id $secret_access_key
+    bash $common_config/configure-user.sh $gitusername $group
 
     # Install Jupyter extension (Optional)
     bash $common_config/install-jupyter-extension.sh
