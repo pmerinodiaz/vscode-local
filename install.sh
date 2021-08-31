@@ -11,7 +11,7 @@ if [[ ( $# -ne 4 ) ]]; then
         echo "Input Gitlab username (Required. For example: dhidalgo.hd fundacionchile ohernandezm patricio.merino)"
         read gitusername
         echo "There are not group."
-        echo "Input group (Type Enter for empty)"
+        echo "Input group (For example: trq-fundacion. Type Enter for empty)"
         read group
         echo "There are not access_key_id."
         echo "Input access_key_id (Type Enter for empty)"
