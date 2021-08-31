@@ -8,10 +8,10 @@ config_file=".conf"
 if [[ ( $# -ne 2 ) ]]; then
     if [ ! -f "$config_file" ]; then
         echo "There are not Gitlab username."
-        echo "Input Gitlab username (Required. For example: dhidalgo.hd fundacionchile ohernandezm patricio.merino)"
+        echo "Input Gitlab username (Required)"
         read gitusername
         echo "There are not group."
-        echo "Input group (For example: trq-fundacion. Type Enter for empty)"
+        echo "Input group (Type Enter for empty)"
         read group
         if [[ $gitusername != "" && $group != "" ]]; then
             bash store-parameters.sh $gitusername $group

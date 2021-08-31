@@ -8,22 +8,18 @@ mkdir -p $SDK_PATH
 cd $SDK_PATH
 git clone https://gitlab.com/pmerinodiaz/vscode-local.git
 cd vscode-local
-./install.sh group access_key_id secret_access_key
+./install.sh <gitusername> <group>
 ```
 
 ## 1.1 Explanation of each variable
 
-### group (Optional)
+### gitusername (Required)
 
-The group name of Gitlab of your project (For example: oceania, frost-forecast, cien, etc.)
+The Gitlab user account.
 
-### access_key_id (Optional)
+### group (Required)
 
-The access key id of the associated AWS credential of your AWS account.
-
-### secret_access_key (Optional)
-
-The secret access key of the associated AWS credential of your AWS account.
+The group name of Gitlab of your project.
 
 ## 1.2 Explanation of tasks in the installer
 
@@ -39,4 +35,5 @@ Those are the taks of this installer:
 8. Install AWS CLI and credentials of AWS S3
 9. Manage Docker as a non-root user
 10. Install Nodejs, Npm, Yarn and create_react_app
-11. Clone the repositories
+11. Install Kubectl
+12. Clone the repositories
